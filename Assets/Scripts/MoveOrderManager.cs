@@ -5,14 +5,9 @@ using UnityEngine;
 public class MoveOrderManager : MonoBehaviour
 {
     [SerializeField] Transform _moveObj;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    public void DoMoveRequest(Vector3 endPos)
+    public void DoMoveRequest(Vector3 addPos)
     {
-        _moveObj.position = endPos;
+        _moveObj.position += addPos;
     }
 }

@@ -14,7 +14,6 @@ public class GPTCall : MonoBehaviour
     private void Start()
     {
         _request.Where(x => x == true).Subscribe(_ => Request()).AddTo(this);
-       
     }
 
     private void Update()
@@ -28,4 +27,6 @@ public class GPTCall : MonoBehaviour
         var chatGPTConnection = new ChatGPTConnection(_openAIApiKey);
         chatGPTConnection.RequestAsync(_requestCommand);
     }
+
+
 }
