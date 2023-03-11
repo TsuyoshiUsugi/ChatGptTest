@@ -1,10 +1,18 @@
 using System.IO;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveAPIKeyManager : MonoBehaviour
 {
+    public event Action<string> OnSaveAPIKey;
+
+    void Start()
+    {
+        OnSaveAPIKey += key =>  SaveAPIKey(key);
+    }
+
     /// <summary>
     /// APIPathÇï€ë∂Ç∑ÇÈ
     /// </summary>
@@ -12,6 +20,7 @@ public class SaveAPIKeyManager : MonoBehaviour
     public void SaveAPIKey(string aPIKey)
     {
         string savePath = Application.persistentDataPath + "/APIKey.json";
+        Debug.Log(savePath);
         KeyData data = new();
         data.APIKey = aPIKey;
 
@@ -21,6 +30,8 @@ public class SaveAPIKeyManager : MonoBehaviour
         {
             streamWriter.Write(jsonData);
         }
+
+        Debug.Log("KeyÇÉZÅ[ÉuÇµÇ‹ÇµÇΩ");
     }
 
     /// <summary>
