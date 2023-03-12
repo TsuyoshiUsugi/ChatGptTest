@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
 using AAA.OpenAI;
-using UniRx;
+using Cysharp.Threading.Tasks;
 
 public class GPTCallManger : MonoBehaviour
 {
@@ -36,9 +36,9 @@ public class GPTCallManger : MonoBehaviour
         _messageList.Add(new ChatGPTMessageModel { role = _assumption.role, content = _assumption.content });
     }
 
-    public void Request(string request)
+    public async void Request(string request)
     {
-        Debug.Log("リクエスト");
+        Debug.Log(request);
         var chatGPTConnection = new ChatGPTConnection(_saveAPIKeyManager.LoadApiPath());
         _messageList.Add(new ChatGPTMessageModel { role = "user", content = request });
 
