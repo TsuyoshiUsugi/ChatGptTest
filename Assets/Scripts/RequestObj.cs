@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveOrderManager : MonoBehaviour
+public class RequestObj : MonoBehaviour
 {
     [SerializeField] Transform _moveObj;
 

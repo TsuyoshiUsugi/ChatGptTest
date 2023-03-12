@@ -17,7 +17,7 @@ public class GPTCallManger : MonoBehaviour
         role = "system",
         content =
                 $"あなたは通常の会話に加え、オブジェクトの操作ができます。" +
-                $"オブジェクトがあると仮定してください。" +
+                $"オブジェクトは0,0,0の場所にあると仮定します" +
                 $"操作を行う場合はコマンドを出力してください。" +
                 $"操作がない場合はコマンドを空白としてください" +
                 $"利用可能なコマンドは以下の通りです" +
@@ -38,6 +38,11 @@ public class GPTCallManger : MonoBehaviour
 
     public async void Request(string request)
     {
+        Debug.Log(_messageList.Count);
+        if (_messageList.Count == 2)
+        {
+            _messageList.RemoveAt(1);
+        }
         Debug.Log(request);
         var chatGPTConnection = new ChatGPTConnection(_saveAPIKeyManager.LoadApiPath());
         _messageList.Add(new ChatGPTMessageModel { role = "user", content = request });
@@ -58,7 +63,7 @@ public class GPTCallManger : MonoBehaviour
             float y = float.Parse(normalizedCommand[3]);
             float z = float.Parse(normalizedCommand[4]);
 
-            GameObject.FindObjectOfType<MoveOrderManager>().DoMoveRequest(new(x, y, z));
+            GameObject.FindObjectOfType<RequestObj>().DoMoveRequest(new(x, y, z));
 
         }
     }

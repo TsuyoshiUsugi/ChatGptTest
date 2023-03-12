@@ -38,11 +38,6 @@ namespace AAA.OpenAI
             };
             var jsonOptions = JsonUtility.ToJson(options);
 
-            foreach (var item in messageList)
-            {
-                Debug.Log(item.content);
-            };
-
             //OpenAIの文章生成(Completion)にAPIリクエストを送り、結果を変数に格納
             using var request = new UnityWebRequest(apiUrl, "POST")
             {
