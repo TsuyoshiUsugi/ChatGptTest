@@ -8,6 +8,6 @@ public class RequestObj : MonoBehaviour
 
     public void DoMoveRequest(Vector3 addPos)
     {
-        _moveObj.position += addPos;
+        _moveObj.position = addPos;
     }
 }
