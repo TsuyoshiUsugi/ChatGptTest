@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 using AAA.OpenAI;
 using UniRx;
 
 public class GPTCallManger : MonoBehaviour
 {
-    [SerializeField] string _openAIApiKey = "";
+    [SerializeField] SaveAPIKeyManager _saveAPIKeyManager;
     [SerializeField] string _requestCommand = "こんにちは";
 
-    readonly ChatGPTMessageModel _assumption = new ChatGPTMessageModel()
+    List<ChatGPTMessageModel> _messageList = new();
+
+    readonly ChatGPTMessageModel _assumption = new()
     {
         role = "system",
         content =
                 $"あなたは通常の会話に加え、オブジェクトの操作ができます。" +
-                $"オブジェクトがあると仮定してください" +
+                $"オブジェクトがあると仮定してください。" +
                 $"操作を行う場合はコマンドを出力してください。" +
                 $"操作がない場合はコマンドを空白としてください" +
                 $"利用可能なコマンドは以下の通りです" +
@@ -28,25 +31,36 @@ public class GPTCallManger : MonoBehaviour
                 $"了解しました。それでは始めましょう。"
     };
 
-    private readonly ReactiveProperty<bool> _request = new BoolReactiveProperty();
-
     private void Start()
     {
-        _request.Where(x => x == true).Subscribe(_ => Request()).AddTo(this);
+        _messageList.Add(new ChatGPTMessageModel { role = _assumption.role, content = _assumption.content });
     }
 
-    private void Update()
-    {
-        _request.Value = Input.GetKeyDown(KeyCode.R);
-    }
-
-    void Request()
+    public void Request(string request)
     {
         Debug.Log("リクエスト");
-        var chatGPTConnection = new ChatGPTConnection(_openAIApiKey);
-        chatGPTConnection.MessageList.Add(_assumption);
-    
-        chatGPTConnection.RequestAsync(_requestCommand);
+        var chatGPTConnection = new ChatGPTConnection(_saveAPIKeyManager.LoadApiPath());
+        _messageList.Add(new ChatGPTMessageModel { role = "user", content = request });
+
+        var result = await chatGPTConnection.RequestAsync(_messageList);
+        ReadCommand(result.ToString());
+    }
+
+    void ReadCommand(string com)
+    {
+        var command = com.Split("[会話部分]");  //ここで[コマンド]と[会話部分に分かれる]
+
+        if (command[0].StartsWith("[コマンド] SetPos")) //SetPosコマンドなら
+        {
+            var normalizedCommand = command[0].Split(" "); //ここで[コマンド], SetPos, x, y, zに分かれる
+
+            float x = float.Parse(normalizedCommand[2]);
+            float y = float.Parse(normalizedCommand[3]);
+            float z = float.Parse(normalizedCommand[4]);
+
+            GameObject.FindObjectOfType<MoveOrderManager>().DoMoveRequest(new(x, y, z));
+
+        }
     }
 
 

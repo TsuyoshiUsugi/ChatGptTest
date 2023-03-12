@@ -577,7 +577,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &776711778
 GameObject:
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 1191637439}
   - component: {fileID: 1191637438}
   m_Layer: 0
-  m_Name: SaveUIView
+  m_Name: SceneView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1078,7 +1078,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229200629
 GameObject:
@@ -1209,6 +1209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneView: {fileID: 1191637438}
   _saveAPIKeyManager: {fileID: 1998372655}
+  _gPTCallManger: {fileID: 1376100484}
 --- !u!4 &1285438662
 Transform:
   m_ObjectHideFlags: 0
@@ -1222,7 +1223,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1285835202
 GameObject:
@@ -1382,7 +1383,7 @@ GameObject:
   - component: {fileID: 1376100485}
   - component: {fileID: 1376100484}
   m_Layer: 0
-  m_Name: GPTCall
+  m_Name: GPTCallManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1400,7 +1401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 881f45dc17b847442acc44f4acf060ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _openAIApiKey: 
+  _saveAPIKeyManager: {fileID: 1998372655}
   _requestCommand: "\u3053\u3093\u306B\u3061\u306F"
 --- !u!4 &1376100485
 Transform:
@@ -1415,7 +1416,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1430520461
 GameObject:

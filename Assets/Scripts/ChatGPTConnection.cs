@@ -11,20 +11,16 @@ namespace AAA.OpenAI
     {
         private readonly string _apiKey;
         //会話履歴を保持するリスト
-        List<ChatGPTMessageModel> _messageList = new();
-        public List<ChatGPTMessageModel> MessageList { get => _messageList; set => _messageList = value; }
-
+       
         public ChatGPTConnection(string apiKey)
         {
             _apiKey = apiKey;
         }
 
-        public async UniTask<ChatGPTResponseModel> RequestAsync(string userMessage)
+        public async UniTask<string> RequestAsync(List<ChatGPTMessageModel> messageList)
         {
             //文章生成AIのAPIのエンドポイントを設定
             var apiUrl = "https://api.openai.com/v1/chat/completions";
-
-            _messageList.Add(new ChatGPTMessageModel { role = "user", content = userMessage });
 
             //OpenAIのAPIリクエストに必要なヘッダー情報を設定
             var headers = new Dictionary<string, string>
@@ -38,11 +34,14 @@ namespace AAA.OpenAI
             var options = new ChatGPTCompletionRequestModel()
             {
                 model = "gpt-3.5-turbo",
-                messages = _messageList
+                messages = messageList
             };
             var jsonOptions = JsonUtility.ToJson(options);
 
-            Debug.Log("自分:" + userMessage);
+            foreach (var item in messageList)
+            {
+                Debug.Log(item.content);
+            };
 
             //OpenAIの文章生成(Completion)にAPIリクエストを送り、結果を変数に格納
             using var request = new UnityWebRequest(apiUrl, "POST")
@@ -69,28 +68,11 @@ namespace AAA.OpenAI
                 var responseString = request.downloadHandler.text;
                 var responseObject = JsonUtility.FromJson<ChatGPTResponseModel>(responseString);
                 Debug.Log("ChatGPT:" + responseObject.choices[0].message.content);
-                ReadCommand(responseObject.choices[0].message.content);
-                _messageList.Add(responseObject.choices[0].message);
-                return responseObject;
+                //_messageList.Add(responseObject.choices[0].message);
+                return responseObject.choices[0].message.content;
             }
         }
 
-        void ReadCommand(string com)
-        {
-            var command = com.Split("[会話部分]");  //ここで[コマンド]と[会話部分に分かれる]
-
-            if (command[0].StartsWith("[コマンド] SetPos")) //SetPosコマンドなら
-            {
-                var normalizedCommand = command[0].Split(" "); //ここで[コマンド], SetPos, x, y, zに分かれる
-
-                float x = float.Parse(normalizedCommand[2]);
-                float y = float.Parse(normalizedCommand[3]);
-                float z = float.Parse(normalizedCommand[4]);
-
-                GameObject.FindObjectOfType<MoveOrderManager>().DoMoveRequest(new(x, y, z));
-                
-            }
-        }
     }
 
     [Serializable]
