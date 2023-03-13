@@ -8,8 +8,8 @@ using UnityEngine.UI;
 /// </summary>
 public class WhisperRequestCaller : MonoBehaviour
 {
-    [SerializeField] private Text displayText;
     [SerializeField] SaveAPIKeyManager _saveAPIKeyManager;
+    [SerializeField] GPTCallManger _gPTCallManger;
 
     private CancellationTokenSource _cts = new();
     private CancellationToken _token;
@@ -22,6 +22,8 @@ public class WhisperRequestCaller : MonoBehaviour
         _whisperConnection = new(_saveAPIKeyManager.LoadApiPath());
 
         WhisperAPIResponseModel responseModel = await _whisperConnection.RequestAsync(_token, audioFilePath);
-        displayText.text = responseModel.text;
+        _gPTCallManger.Request(responseModel.text);
+        // 録音したオーディオファイルを削除する
+        System.IO.File.Delete(Application.dataPath + "/recording.wav");
     }
 }

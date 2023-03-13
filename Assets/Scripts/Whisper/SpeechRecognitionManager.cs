@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class SpeechRecognitionManager : MonoBehaviour
 {
+	[SerializeField] WhisperRequestCaller _whisperRequestCaller;
+
     private bool isRecording;
 
     public IEnumerator Record()
@@ -39,7 +41,7 @@ public class SpeechRecognitionManager : MonoBehaviour
         SavWav.Save(filePath, audioSource.clip);
 
 		//ここでwhisper呼び出す
-
+		_whisperRequestCaller.WhisperRequestCall(filePath);
 
 		// 録音したオーディオファイルを削除する
 		System.IO.File.Delete(Application.dataPath + "/recording.wav");
@@ -64,7 +66,7 @@ public static class SavWav
 
 	public static bool Save(string filename, AudioClip clip)
 	{
-
+		Debug.Log(filename);
 		if (!filename.ToLower().EndsWith(".wav"))
 		{
 			filename += ".wav";
