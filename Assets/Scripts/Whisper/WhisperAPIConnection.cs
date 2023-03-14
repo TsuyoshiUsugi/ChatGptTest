@@ -36,8 +36,6 @@ public class WhisperAPIConnection
         form.AddField("model", ModelName);
         form.AddBinaryData("file", fileBytes, Path.GetFileName(filePath), "multipart/form-data");
 
-        Debug.Log(Path.GetFileName(filePath));
-
         //// ã‚Ìš‚Æ‚Ç‚¿‚ç‚Å‚à³‚µ‚­ˆ—‚³‚ê‚é
         //List<IMultipartFormSection> form = new();
         //form.Add(new MultipartFormDataSection("model", ModelName));

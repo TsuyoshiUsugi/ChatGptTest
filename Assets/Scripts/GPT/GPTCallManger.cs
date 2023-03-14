@@ -39,7 +39,6 @@ public class GPTCallManger : MonoBehaviour
 
     public async void Request(string request)
     {
-        Debug.Log(_messageList.Count);
         if (_messageList.Count == 2)
         {
             _messageList.RemoveAt(1);
@@ -49,12 +48,15 @@ public class GPTCallManger : MonoBehaviour
         _messageList.Add(new ChatGPTMessageModel { role = "user", content = request });
 
         var result = await chatGPTConnection.RequestAsync(_messageList);
+
         ReadCommand(result.ToString());
     }
 
     void ReadCommand(string com)
     {
         var command = com.Split("[会話部分]");  //ここで[コマンド]と[会話部分に分かれる]
+
+        ReadLine(command[1]);
 
         if (command[0].StartsWith("[コマンド] SetPos")) //SetPosコマンドなら
         {
@@ -65,8 +67,12 @@ public class GPTCallManger : MonoBehaviour
             float z = float.Parse(normalizedCommand[4]);
 
             GameObject.FindObjectOfType<RequestObj>().DoMoveRequest(new(x, y, z));
-
         }
+    }
+
+    void ReadLine(string readLine)
+    {
+        OpenJTalk.Speak(readLine, "tohoku-f01-happy");
     }
 
 
