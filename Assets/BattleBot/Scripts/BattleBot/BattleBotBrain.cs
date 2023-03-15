@@ -10,7 +10,8 @@ using UniRx;
 public class BattleBotBrain : MonoBehaviour
 {
     /// <summary> ñΩóﬂàÍóó </summary>
-    [SerializeField] List<ICommand> _commandList = new();
+    [SerializeReference] List<ICommand> _commandList = new();
+    [SerializeReference] ICommand _iCommand;
 
     /// <summary> åªç›ÇÃñΩóﬂ </summary>
     ReactiveProperty<string[]> _orderCommand = new();
@@ -19,6 +20,9 @@ public class BattleBotBrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _commandList.Add(new MoveOrder());
+
+
         _orderCommand.Subscribe(com => SelectCommand(com)).AddTo(this.gameObject);
     }
 
@@ -29,6 +33,12 @@ public class BattleBotBrain : MonoBehaviour
     /// <param name="stringCommand"></param>
     void SelectCommand(string[] stringCommand)
     {
+        if(stringCommand == null)
+        {
+            CheckException();
+            return;
+        }
+
         foreach (var command in _commandList)
         {
             if(stringCommand[0] == nameof(command))
@@ -48,6 +58,14 @@ public class BattleBotBrain : MonoBehaviour
                 }
             }
         }
+
+        CheckException();
+    }
+
+    void CheckException()
+    {
         Debug.Log("ìñÇƒÇÕÇ‹ÇÈñΩóﬂÇ™Ç†ÇËÇ‹ÇπÇÒ");
+        OpenJTalk.Speak("ìñÇƒÇÕÇ‹ÇÈñΩóﬂÇ™Ç†ÇËÇ‹ÇπÇÒ", "takumi_normal");
+        return;
     }
 }

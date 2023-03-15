@@ -50,6 +50,7 @@ public class GPTCallManger : MonoBehaviour
 
         var result = await chatGPTConnection.RequestAsync(_messageList);
 
+        //‚±‚±‚ÅBot‚ÌŒÄ‚Ño‚µ
         ReadCommand(result.ToString());
     }
 
@@ -73,7 +74,7 @@ public class GPTCallManger : MonoBehaviour
 
     void ReadLine(string readLine)
     {
-        OpenJTalk.Speak(readLine, "tohoku-f01-happy");
+        OpenJTalk.Speak(readLine, "takumi_normal");
     }
 
 
