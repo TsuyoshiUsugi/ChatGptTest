@@ -11,6 +11,7 @@ using UnityEngine.UI;
 public class RecordVoice : MonoBehaviour
 {
     [SerializeField] Button _recordButton;
+    [SerializeField] Text _isRecordingText;
     [SerializeField] WhisperRequestCaller _whisperRequestCaller;
     AudioClip _voiceClip;
 
@@ -29,18 +30,29 @@ public class RecordVoice : MonoBehaviour
         
         _micName = Microphone.devices[0];
 
-        _recordButton.onClick.AddListener(() => OnRecordButtonClicked());
+        //_recordButton.onClick.AddListener(() => OnRecordButtonClicked());
         
     }
 
-     void OnRecordButtonClicked()
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            OnRecordButtonClicked();
+        }
+        else if(Input.GetKeyUp(KeyCode.F))
+        {
+            OnRecordButtonClicked();
+        }
+    }
+
+    void OnRecordButtonClicked()
     {
         if(!_isRecording)
         {
-            Debug.Log("レコーディング中");
             _isRecording = true;
 
-            _recordButton.GetComponentInChildren<Text>().text = "音声認識中";
+            _isRecordingText.text = "音声認識中";
 
             _voiceClip = Microphone.Start(
                 deviceName: _micName,
@@ -50,14 +62,15 @@ public class RecordVoice : MonoBehaviour
         }
         else
         {
-            Debug.Log("レコード終了");
             _isRecording = false;
 
-            _recordButton.GetComponentInChildren<Text>().text = "音声認識を始める";
+            _isRecordingText.text = "音声認識を始める(Fキー)";
             Microphone.End(deviceName: _micName);
 
             //Wavファイル生成
             Wav.ExportWav(_voiceClip, Application.dataPath + "/recording.wav");
+
+            //WhisperAPIにリクエスト送信
             _whisperRequestCaller.WhisperRequestCall(Application.dataPath + "/recording.wav");
             
         }

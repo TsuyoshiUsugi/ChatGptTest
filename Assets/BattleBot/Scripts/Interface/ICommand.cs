@@ -5,5 +5,5 @@ using UnityEngine;
 /// </summary>
 public interface ICommand
 {
-    void Command(string[] arguments);
+    void Command(string[] arguments, GameObject bot);
 }

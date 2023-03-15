@@ -10,8 +10,7 @@ using UniRx;
 public class BattleBotBrain : MonoBehaviour
 {
     /// <summary> 命令一覧 </summary>
-    [SerializeReference] List<ICommand> _commandList = new();
-    [SerializeReference] ICommand _iCommand;
+    List<ICommand> _commandList = new();
 
     /// <summary> 現在の命令 </summary>
     ReactiveProperty<string[]> _orderCommand = new();
@@ -21,6 +20,13 @@ public class BattleBotBrain : MonoBehaviour
     void Start()
     {
         _commandList.Add(new MoveOrder());
+
+
+        foreach (var command in _commandList)
+        {
+            Debug.Log(nameof());
+        }
+
 
 
         _orderCommand.Subscribe(com => SelectCommand(com)).AddTo(this.gameObject);
@@ -41,19 +47,20 @@ public class BattleBotBrain : MonoBehaviour
 
         foreach (var command in _commandList)
         {
-            if(stringCommand[0] == nameof(command))
+
+            if(stringCommand[1] == nameof(command))
             {
-                if (stringCommand.Length >= 2)
+                if (stringCommand.Length >= 3)
                 {
                     //文字列のコマンドから関数名を除いた引数のみの配列を用意する
                     string[] arg = stringCommand.Skip(1).Take(stringCommand.Length - 1).ToArray();
-                    command.Command(arg);
+                    command.Command(arg, this.gameObject);
                 }
                 //引数がない関数を実行するとき
                 else
                 {
                     string[] dummy = { };
-                    command.Command(dummy);
+                    command.Command(dummy, this.gameObject);
                     return;
                 }
             }

@@ -9,6 +9,7 @@ public class GPTCallManger : MonoBehaviour
 {
     [SerializeField] SaveAPIKeyManager _saveAPIKeyManager;
     [SerializeField] string _requestCommand = "こんにちは";
+    [SerializeField] BattleBotBrain _battleBotBrain;
 
     List<ChatGPTMessageModel> _messageList = new();
 
@@ -21,8 +22,11 @@ public class GPTCallManger : MonoBehaviour
                 $"操作を行う場合はコマンドを出力してください。" +
                 $"操作がない場合はコマンドを空白としてください" +
                 $"利用可能なコマンドは以下の通りです" +
-                $"- SetPos x y z" +
-                $"オブジェクトの位置を変更します。x, y, z はそれぞれX座標、Y座標、Z座標を指定します。" +
+
+                $"- MoveOrder x y z t" +
+                $"オブジェクトを移動します。x, y, z, t はそれぞれX座標、Y座標、Z座標、実行する秒数を指定します。" +
+                $"時間が指定されていない場合はtに-1を入れて返してください" +
+
                 $"今後の会話ではあなたは常にコマンドを [コマンド] 以下に記載し、会話内容については [会話部分] に記載して返答してください" +
                 $"命令が送られてきた時は会話部分の語尾は「～します」としてください" +
                 $"必ずコマンドを最初に出力してください" +
@@ -44,32 +48,25 @@ public class GPTCallManger : MonoBehaviour
         {
             _messageList.RemoveAt(1);
         }
-        Debug.Log(request);
         var chatGPTConnection = new ChatGPTConnection(_saveAPIKeyManager.LoadApiPath());
         _messageList.Add(new ChatGPTMessageModel { role = "user", content = request });
 
         var result = await chatGPTConnection.RequestAsync(_messageList);
 
-        //ここでBotの呼び出し
         ReadCommand(result.ToString());
+       
     }
 
     void ReadCommand(string com)
     {
-        var command = com.Split("[会話部分]");  //ここで[コマンド]と[会話部分に分かれる]
+        var command = com.Split("[会話部分]");  //ここで[コマンド]と[会話部分]に分かれる
 
         ReadLine(command[1]);
 
-        if (command[0].StartsWith("[コマンド] SetPos")) //SetPosコマンドなら
-        {
-            var normalizedCommand = command[0].Split(" "); //ここで[コマンド], SetPos, x, y, zに分かれる
+        var normalizedCommand = command[0].Split(" "); //ここで[コマンド], 関数名, x, y, z, tに分かれる
 
-            float x = float.Parse(normalizedCommand[2]);
-            float y = float.Parse(normalizedCommand[3]);
-            float z = float.Parse(normalizedCommand[4]);
+        _battleBotBrain.OrderCommand.Value = normalizedCommand;
 
-            GameObject.FindObjectOfType<RequestObj>().DoMoveRequest(new(x, y, z));
-        }
     }
 
     void ReadLine(string readLine)
