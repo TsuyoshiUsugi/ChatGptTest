@@ -11,7 +11,7 @@ using UniRx;
 public class BattleBotBrain : MonoBehaviour
 {
     /// <summary> ñΩóﬂàÍóó </summary>
-    [SerializeReference] List<ICommand> _commandList = new();
+    List<ICommand> _commandList = new();
 
     /// <summary> åªç›ÇÃñΩóﬂ </summary>
     ReactiveProperty<string[]> _orderCommand = new();
@@ -20,7 +20,8 @@ public class BattleBotBrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _commandList.Add(new MoveOrder());
+        var moveOrder = GetComponent<MoveOrder>();
+        _commandList.Add(moveOrder);
 
         _orderCommand.Subscribe(com => SelectCommand(com)).AddTo(this.gameObject);
     }

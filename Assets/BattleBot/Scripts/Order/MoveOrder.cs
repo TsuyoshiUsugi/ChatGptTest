@@ -2,15 +2,16 @@ using System;
 using System.Threading;
 using System.Collections;
 using UnityEngine;
+using UniRx;
+using UniRx.Triggers;
 
 /// <summary>
 /// 移動に関するコマンドのクラス
 /// </summary>
-[System.Serializable]
-public class MoveOrder : ICommand
+public class MoveOrder : MonoBehaviour, ICommand
 {
     GameObject _targetObj;
-    float _speed = 10;
+    float _speed = 1;
 
     public void Command(string[] arguments, GameObject bot)
     {
@@ -24,9 +25,7 @@ public class MoveOrder : ICommand
 
         Vector3 dir = new(x, y, z);
 
-        Timer timer = new(_ => Move(dir), null, 0, intT);
-        Thread.Sleep(intT);
-        timer.Dispose();
+        Move(dir, t);
 
         Debug.Log("MoveOrder実行");
     }
@@ -36,8 +35,10 @@ public class MoveOrder : ICommand
     /// </summary>
     /// <param name="dir"></param>
     /// <param name="time"></param>
-    void Move(Vector3 dir)
+    void Move(Vector3 dir, float time)
     {
-        _targetObj.transform.position += _speed * dir;
+        this.UpdateAsObservable()
+            .Take(System.TimeSpan.FromSeconds(time))
+            .Subscribe(_ => this.transform.position += _speed * Time.deltaTime * dir);
     }
 }
