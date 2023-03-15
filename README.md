@@ -4,7 +4,8 @@
 
 # メモ
 - GoogleのGenerative AI App Builderを使えば、わざわざ前提条件を送ったりしなくてもよくなるかも(https://japan.googleblog.com/2023/03/google-workspace-ai.html)
-- ※APIキーはスクリプト上はもちろんシーンのフィールドにも書きこんではいけない（戒め） 
+- GPT4を申し込んだ。期待
+- APIキーはスクリプト上はもちろんシーンのフィールドにも書きこんでコミットしてはいけない（戒め） 
 
 # 進捗  
 ### 2022/3/12
