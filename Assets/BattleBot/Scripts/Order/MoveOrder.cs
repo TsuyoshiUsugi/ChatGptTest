@@ -1,10 +1,7 @@
 using System;
-using System.Linq;
+using System.Threading;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UniRx;
-using UniRx.Triggers;
 
 /// <summary>
 /// 移動に関するコマンドのクラス
@@ -17,17 +14,21 @@ public class MoveOrder : ICommand
 
     public void Command(string[] arguments, GameObject bot)
     {
-
-        var normalizedArguments = Array.ConvertAll(arguments, arg => float.Parse(arg)); //ここで引数をx, y, zに分かれる
+        float[] normalizedArguments = Array.ConvertAll(arguments, arg => float.Parse(arg)); //ここで引数をx, y, zに分かれる
 
         float x = normalizedArguments[0];
         float y = normalizedArguments[1];
         float z = normalizedArguments[2];
         float t = normalizedArguments[3];
+        int intT = (int)(t * 1000);
 
         Vector3 dir = new(x, y, z);
 
-        Move(dir, t);
+        Timer timer = new(_ => Move(dir), null, 0, intT);
+        Thread.Sleep(intT);
+        timer.Dispose();
+
+        Debug.Log("MoveOrder実行");
     }
 
     /// <summary>
@@ -35,14 +36,8 @@ public class MoveOrder : ICommand
     /// </summary>
     /// <param name="dir"></param>
     /// <param name="time"></param>
-    public void Move(Vector3 dir, float time)
+    void Move(Vector3 dir)
     {
-        Debug.Log("move実行中");
-        _targetObj.UpdateAsObservable().Subscribe(_ => _targetObj.transform.position += dir * _speed * Time.deltaTime);
-    }
-
-    IEnumerator CountTime(float time)
-    {
-        yield return new WaitForSeconds(time);
+        _targetObj.transform.position += _speed * dir;
     }
 }

@@ -11,8 +11,7 @@ using UniRx;
 public class BattleBotBrain : MonoBehaviour
 {
     /// <summary> 命令一覧 </summary>
-    List<ICommand> _commandList = new();
-    List<Action<string[], GameObject>> _comList = new();
+    [SerializeReference] List<ICommand> _commandList = new();
 
     /// <summary> 現在の命令 </summary>
     ReactiveProperty<string[]> _orderCommand = new();
@@ -43,13 +42,15 @@ public class BattleBotBrain : MonoBehaviour
         {
             if(stringCommand[1] == command.GetType().Name)
             {
-                Debug.Log("合致１");
                 if (stringCommand.Length >= 3)
                 {
-                    Debug.Log("合致２");
                     //文字列のコマンドから[コマンド]と関数名と""を除いた引数のみの配列を用意する
                     string[] arg = stringCommand.Skip(2).Where(x => x != "").Take(stringCommand.Length - 1).ToArray();
-                    var a = arg.Select(x => x != "").ToArray();
+
+                    foreach (var item in arg)
+                    {
+                        Debug.Log(item) ;
+                    }
 
                     command.Command(arg, this.gameObject);
                     return;
