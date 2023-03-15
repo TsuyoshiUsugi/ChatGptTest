@@ -10,13 +10,14 @@ using UniRx.Triggers;
 /// 移動に関するコマンドのクラス
 /// </summary>
 [System.Serializable]
-public class MoveOrder : MonoBehaviour, ICommand
+public class MoveOrder : ICommand
 {
     GameObject _targetObj;
     float _speed = 10;
 
     public void Command(string[] arguments, GameObject bot)
     {
+
         var normalizedArguments = Array.ConvertAll(arguments, arg => float.Parse(arg)); //ここで引数をx, y, zに分かれる
 
         float x = normalizedArguments[0];
@@ -36,7 +37,8 @@ public class MoveOrder : MonoBehaviour, ICommand
     /// <param name="time"></param>
     public void Move(Vector3 dir, float time)
     {
-        this.UpdateAsObservable().Subscribe(_ => _targetObj.transform.position += dir * _speed * Time.deltaTime);
+        Debug.Log("move実行中");
+        _targetObj.UpdateAsObservable().Subscribe(_ => _targetObj.transform.position += dir * _speed * Time.deltaTime);
     }
 
     IEnumerator CountTime(float time)

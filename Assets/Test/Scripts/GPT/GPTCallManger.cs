@@ -61,7 +61,14 @@ public class GPTCallManger : MonoBehaviour
     {
         var command = com.Split("[会話部分]");  //ここで[コマンド]と[会話部分]に分かれる
 
-        ReadLine(command[1]);
+        if (command.Length == 1)
+        {
+            ReadLine(command[0]);
+        }
+        else
+        {            
+            ReadLine(command[1]);
+        }
 
         var normalizedCommand = command[0].Split(" "); //ここで[コマンド], 関数名, x, y, z, tに分かれる
 
