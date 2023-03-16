@@ -15,12 +15,12 @@ public class MoveOrder : MonoBehaviour, ICommand
 
     public void Command(string[] arguments, GameObject bot)
     {
-        float[] normalizedArguments = Array.ConvertAll(arguments, arg => float.Parse(arg)); //‚±‚±‚Åˆø”‚ğx, y, z‚É•ª‚©‚ê‚é
+        
 
-        float x = normalizedArguments[0];
-        float y = normalizedArguments[1];
-        float z = normalizedArguments[2];
-        float t = normalizedArguments[3];
+        float x = float.Parse(arguments[0]);
+        float y = float.Parse(arguments[1]);
+        float z = float.Parse(arguments[2]);
+        float t = float.Parse(arguments[3]);
         int intT = (int)(t * 1000);
 
         Vector3 dir = new(x, y, z);

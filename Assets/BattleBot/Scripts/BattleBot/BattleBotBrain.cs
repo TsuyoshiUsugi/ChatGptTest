@@ -20,10 +20,17 @@ public class BattleBotBrain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var moveOrder = GetComponent<MoveOrder>();
-        _commandList.Add(moveOrder);
-
+        AddOrder();
         _orderCommand.Subscribe(com => SelectCommand(com)).AddTo(this.gameObject);
+    }
+
+    /// <summary>
+    /// 自分に付与されている命令を実行する
+    /// </summary>
+    void AddOrder()
+    {
+        _commandList = GetComponents<ICommand>().ToList();
+
     }
 
     /// <summary>
@@ -41,8 +48,13 @@ public class BattleBotBrain : MonoBehaviour
 
         foreach (var command in _commandList)
         {
-            if(stringCommand[1] == command.GetType().Name)
+
+
+            Debug.Log($"チェック:{stringCommand[1]}と{command.GetType().Name}");
+
+            if(stringCommand[1].TrimEnd() == command.GetType().Name)
             {
+
                 if (stringCommand.Length >= 3)
                 {
                     //文字列のコマンドから[コマンド]と関数名と""を除いた引数のみの配列を用意する
@@ -52,13 +64,14 @@ public class BattleBotBrain : MonoBehaviour
                     {
                         Debug.Log(item) ;
                     }
-
+                    Debug.Log("実行１");
                     command.Command(arg, this.gameObject);
                     return;
                 }
                 //引数がない関数を実行するとき
                 else
                 {
+                    Debug.Log("実行２");
                     string[] dummy = { };
                     command.Command(dummy, this.gameObject);
                     return;
