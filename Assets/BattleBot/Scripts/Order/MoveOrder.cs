@@ -15,8 +15,6 @@ public class MoveOrder : MonoBehaviour, ICommand
 
     public void Command(string[] arguments, GameObject bot)
     {
-        
-
         float x = float.Parse(arguments[0]);
         float y = float.Parse(arguments[1]);
         float z = float.Parse(arguments[2]);
@@ -37,8 +35,17 @@ public class MoveOrder : MonoBehaviour, ICommand
     /// <param name="time"></param>
     void Move(Vector3 dir, float time)
     {
-        this.UpdateAsObservable()
-            .Take(System.TimeSpan.FromSeconds(time))
-            .Subscribe(_ => this.transform.position += _speed * Time.deltaTime * dir);
+        if(time == -1)
+        {
+            this.UpdateAsObservable()
+                .Subscribe(_ => this.transform.position += _speed * Time.deltaTime * dir);
+        }
+        else
+        {
+            this.UpdateAsObservable()
+                .Take(System.TimeSpan.FromSeconds(time))
+                .Subscribe(_ => this.transform.position += _speed * Time.deltaTime * dir);
+        }
+
     }
 }

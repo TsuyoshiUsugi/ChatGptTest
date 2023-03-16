@@ -42,17 +42,21 @@ public class BattleBotBrain : MonoBehaviour
     {
         if(stringCommand == null || stringCommand.Length == 1)
         {
-            Debug.Log($"チェック:{stringCommand[1]}");
+            if (stringCommand == null)
+            {
+                Debug.Log($"チェック:null");
+            }
+            else
+            {
+                Debug.Log($"チェック:{stringCommand[1]}");
+            }
 
-            CheckException();
+            NoticeException();
             return;
         }
 
         foreach (var command in _commandList)
         {
-
-            
-
             if(stringCommand[1].TrimEnd() == command.GetType().Name)
             {
 
@@ -80,10 +84,10 @@ public class BattleBotBrain : MonoBehaviour
             }
         }
 
-        CheckException();
+        NoticeException();
     }
 
-    void CheckException()
+    void NoticeException()
     {
         Debug.Log("当てはまる命令がありません");
         OpenJTalk.Speak("当てはまる命令がありません", "takumi_normal");

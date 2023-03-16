@@ -5,7 +5,6 @@ using UnityEngine;
 /// <summary>
 /// 各コマンドの単体テスト用
 /// </summary>
-[RequireComponent(typeof(SearchEnemyOrder))]
 public class CommandTest : MonoBehaviour
 {
     ICommand _commands;
@@ -13,17 +12,11 @@ public class CommandTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _commands = GetComponent<SearchEnemyOrder>();
+        _commands = GetComponent<MoveOrder>();
 
-        string[] dummyString = { };
+        string[] dummyString = { "0", "0", "1", "-1"};
         GameObject dummyObj = this.gameObject;
 
         _commands.Command(dummyString, this.gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
