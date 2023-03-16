@@ -2,22 +2,24 @@
 # 目標  
 声で操作できる戦闘補助AIを使ったゲームを作る  
 
-# メモ
+# メモ  
+- Too Many Requestsエラーがそこそこでてくる。またレスポンスもそこまで早くない。実際のゲームでつかうなら返答スピードがそこまで必要でないものの方がいいかも。
 - GoogleのGenerative AI App Builderを使えば、わざわざ前提条件を送ったりしなくてもよくなるかも(https://japan.googleblog.com/2023/03/google-workspace-ai.html)
 - GPT4を申し込んだ。期待
 - APIキーはスクリプト上はもちろんシーンのフィールドにも書きこんでコミットしてはいけない（戒め） 
 
 # 進捗  
+### 2022/3/13
+
+
+https://user-images.githubusercontent.com/104509665/224716911-ac20d768-c51e-4a12-80f6-03abf4db7741.mp4
+
+
 ### 2022/3/12
 
 
 https://user-images.githubusercontent.com/104509665/224540993-210808cf-34eb-4122-8c71-02816c9e4572.mp4
 
-
-### 2022/3/13
-
-
-https://user-images.githubusercontent.com/104509665/224716911-ac20d768-c51e-4a12-80f6-03abf4db7741.mp4
 
 
 # 参考
