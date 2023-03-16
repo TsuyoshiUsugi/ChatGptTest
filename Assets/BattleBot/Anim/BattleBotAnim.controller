@@ -52,7 +52,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StayFlyingAnim
-  m_Speed: 0.1
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4294377852453324287}
@@ -65,7 +65,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 29f70c3f333107543b9bd17168afcd5a, type: 2}
+  m_Motion: {fileID: 7400000, guid: c12dbde598eb86342aef98e4ca97a32c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
