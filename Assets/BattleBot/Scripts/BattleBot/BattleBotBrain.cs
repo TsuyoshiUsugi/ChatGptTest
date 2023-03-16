@@ -40,8 +40,10 @@ public class BattleBotBrain : MonoBehaviour
     /// <param name="stringCommand"></param>
     void SelectCommand(string[] stringCommand)
     {
-        if(stringCommand == null)
+        if(stringCommand == null || stringCommand.Length == 1)
         {
+            Debug.Log($"チェック:{stringCommand[1]}");
+
             CheckException();
             return;
         }
@@ -49,8 +51,7 @@ public class BattleBotBrain : MonoBehaviour
         foreach (var command in _commandList)
         {
 
-
-            Debug.Log($"チェック:{stringCommand[1]}と{command.GetType().Name}");
+            
 
             if(stringCommand[1].TrimEnd() == command.GetType().Name)
             {
