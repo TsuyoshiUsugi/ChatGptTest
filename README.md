@@ -1,8 +1,9 @@
 # ChatGptTest  
 # 目標  
-声で操作できる戦闘補助AIを使ったゲームを作る  
+声で操作できる戦闘補助AIを使ったゲームを作る →　呪文の生成をGPTで、詠唱をWhisperAPIでできるゲームを作る。  
 
 # メモ  
+- プロンプトエンジニアリングを学べばより正確な返答を求めることができるかも(http://soysoftware.sakura.ne.jp/archives/3691)
 - Too Many Requestsエラーがそこそこでてくる。またレスポンスもそこまで早くない。実際のゲームでつかうなら返答スピードがそこまで必要でないものの方がいいかも。
 - WhisperAPIはかなり返答がはやい。なんでもChatGPTに送るよりかは決められた単語をWhisperAPIで読み取って実行の方がいいかもしれない。  
 - GoogleのGenerative AI App Builderを使えば、わざわざ前提条件を送ったりしなくてもよくなるかも(https://japan.googleblog.com/2023/03/google-workspace-ai.html)
@@ -28,4 +29,5 @@ https://user-images.githubusercontent.com/104509665/224540993-210808cf-34eb-4122
 - https://twitter.com/tarukosu/status/1632009079840444419  
 - https://qiita.com/mfuji3326/items/c46a56549e3991926fb2  
 - https://www.hanachiru-blog.com/entry/2022/08/18/120000  
+- https://www.youtube.com/watch?v=6hCPb7jX8VM&ab_channel=AI%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E9%9D%A9%E5%91%BD%E3%82%92
 
