@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using AudioRecord;
 
 /// <summary>
 /// 呪文を詠唱するワンドクラス
@@ -9,20 +10,25 @@ using UnityEngine;
 public class Wand : MonoBehaviour
 {
     [Header("参照")]
-    [SerializeField] RecordVoice _recordVoice;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] VoiceRecorder _recordVoice;
 
     // Update is called once per frame
     void Update()
     {
-        while(Input.GetButtonDown("CastSpell"))
+        CastSpell();
+    }
+
+    private void CastSpell()
+    {
+        if (Input.GetButtonDown("CastSpell"))
         {
-            Debug.Log("詠唱中");
+            //recordをtrueにする
+            _recordVoice.OnRecordButtonClicked();
+        }
+        else if(Input.GetButtonUp("CastSpell"))
+        {
+            //recordをfalseにする
+            _recordVoice.OnRecordButtonClicked();
         }
     }
 }

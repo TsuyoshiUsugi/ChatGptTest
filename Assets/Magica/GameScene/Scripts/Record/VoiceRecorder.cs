@@ -54,6 +54,7 @@ namespace AudioRecord
         {
             if (!_isRecording)
             {
+                Debug.Log("ò^âπäJén");
                 _isRecording = true;
                 _recordClip = Microphone.Start(
                 deviceName: _micName,
@@ -63,6 +64,7 @@ namespace AudioRecord
             }
             else
             {
+                Debug.Log("ò^âπèIóπ");
                 _isRecording = false;
                 Microphone.End(deviceName: _micName);
 
