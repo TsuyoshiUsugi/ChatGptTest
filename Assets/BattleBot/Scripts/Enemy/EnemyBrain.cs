@@ -8,6 +8,7 @@ public class EnemyBrain : MonoBehaviour
     
     [Header("Ý’è’l")]
     [SerializeField] float _hp = 100;
+    public float Hp { get => _hp; set => _hp = value; }
 
     // Start is called before the first frame update
     void Start()
