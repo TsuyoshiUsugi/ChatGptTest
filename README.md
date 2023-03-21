@@ -5,7 +5,7 @@
 # メモ  
 - プロンプトエンジニアリングを学べばより正確な返答を求めることができるかも(http://soysoftware.sakura.ne.jp/archives/3691)
 - Too Many Requestsエラーがそこそこでてくる。またレスポンスもそこまで早くない。実際のゲームでつかうなら返答スピードがそこまで必要でないものの方がいいかも。
-- WhisperAPIはかなり返答がはやい。なんでもChatGPTに送るよりかは決められた単語をWhisperAPIで読み取って実行の方がいいかもしれない。  
+- WhisperAPIはかなり返答がはやい。なんでもChatGPTに送るよりかは決められた単語をWhisperAPIで読み取って実行の方がいいかもしれない。 ChatGPTのローカル版のAlpacaが存在するくらいなのだからWhisperAPIもローカル版がでたらより使いやすいかも
 - GoogleのGenerative AI App Builderを使えば、わざわざ前提条件を送ったりしなくてもよくなるかも(https://japan.googleblog.com/2023/03/google-workspace-ai.html)
 - GPT4を申し込んだ。期待
 - APIキーはスクリプト上はもちろんシーンのフィールドにも書きこんでコミットしてはいけない（戒め） 
