@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using AudioRecord;
 
@@ -11,6 +9,8 @@ public class Wand : MonoBehaviour
 {
     [Header("éQè∆")]
     [SerializeField] VoiceRecorder _recordVoice;
+    [SerializeField] WhisperRequestCaller _whisperRequestCaller;
+    [SerializeField] 
 
     // Update is called once per frame
     void Update()
@@ -22,13 +22,12 @@ public class Wand : MonoBehaviour
     {
         if (Input.GetButtonDown("CastSpell"))
         {
-            //recordÇtrueÇ…Ç∑ÇÈ
-            _recordVoice.OnRecordButtonClicked();
+            _recordVoice.StartRecording();
         }
         else if(Input.GetButtonUp("CastSpell"))
         {
-            //recordÇfalseÇ…Ç∑ÇÈ
-            _recordVoice.OnRecordButtonClicked();
+            var fileName = _recordVoice.StopRecording();
+            var spell = _whisperRequestCaller.WhisperRequestCall(fileName);
         }
     }
 }

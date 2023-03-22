@@ -12,7 +12,6 @@ public class WhisperAPIConnection
 {
     private readonly string _apiKey;
     private const string ApiUrl = "https://api.openai.com/v1/audio/transcriptions";
-    private const string FilePath = "Assets/Audio/Record1.wav";
     private const string ModelName = "whisper-1";
 
     public WhisperAPIConnection(string apiKey)

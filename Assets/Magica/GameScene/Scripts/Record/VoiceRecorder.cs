@@ -23,8 +23,6 @@ namespace AudioRecord
 
         [Header("設定値")]
         [SerializeField] string _fileName = "Sample";
-        /// <summary>録音しているか</summary>
-        bool _isRecording;
 
         /// <summary>サンプリング周波数</summary>
         const int _samplingFrequency = 44100;
@@ -51,32 +49,29 @@ namespace AudioRecord
         }
 
         /// <summary>
-        /// 音声録音のオンオフを行うクラス
+        /// 音声録音をオンにする
         /// </summary>
-        public void OnRecordButtonClicked()
+        public void StartRecording()
         {
-            if (!_isRecording)
-            {
-                Debug.Log("録音開始");
-                _isRecording = true;
-                _recordClip = Microphone.Start(
-                deviceName: _micName,
-                loop: false,
-                lengthSec: _maxRecordSecTime,
-                frequency: _samplingFrequency);
-            }
-            else
-            {
-                Debug.Log("録音終了");
-                _isRecording = false;
-                Microphone.End(deviceName: _micName);
+            _recordClip = Microphone.Start(
+            deviceName: _micName,
+            loop: false,
+            lengthSec: _maxRecordSecTime,
+            frequency: _samplingFrequency);
+        }
 
-                //Wavファイル生成
-                Wav.ExportWav(_recordClip, Application.dataPath + $"/{_fileName}{_fileExtension}");
+        /// <summary>
+        /// 音声録音をオフする
+        /// 保存したファイル名を返す
+        /// </summary>
+        public string StopRecording()
+        {
+            Microphone.End(deviceName: _micName);
 
-                //録音終了時のアクションを呼ぶ
-                OnRecordEnd(_fileName);
-            }
+            //Wavファイル生成
+            Wav.ExportWav(_recordClip, Application.dataPath + $"/{_fileName}{_fileExtension}");
+
+            return _fileName;
         }
     }
 

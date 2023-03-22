@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Threading;
+using Cysharp.Threading.Tasks;
 using Models.WhisperAPI;
-using UnityEngine.UI;
 
 /// <summary>
 /// WhisperAPIを呼び出すクラス
@@ -16,14 +16,21 @@ public class WhisperRequestCaller : MonoBehaviour
 
     private WhisperAPIConnection _whisperConnection;
 
-    public async void WhisperRequestCall(string audioFilePath)
+    /// <summary>
+    /// WhisperAPIConnectionを呼び、音声から読み取った文字列を返す
+    /// </summary>
+    /// <param name="audioFilePath"></param>
+    /// <returns></returns>
+    public async UniTask<string> WhisperRequestCall(string audioFilePath)
     {
         _token = _cts.Token;
         _whisperConnection = new(_saveAPIKeyManager.LoadApiPath());
 
         WhisperAPIResponseModel responseModel = await _whisperConnection.RequestAsync(_token, audioFilePath);
-        _gPTCallManger.Request(responseModel.text);
-        // 録音したオーディオファイルを削除する
-        System.IO.File.Delete(Application.dataPath + "/recording.wav");
+
+        //録音したオーディオファイルを削除する
+        System.IO.File.Delete(Application.dataPath + $"/{audioFilePath}.wav");
+
+        return responseModel.text;
     }
 }
