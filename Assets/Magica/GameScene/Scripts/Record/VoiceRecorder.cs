@@ -12,6 +12,9 @@ namespace AudioRecord
     [RequireComponent(typeof(AudioClip))]
     public class VoiceRecorder : MonoBehaviour
     {
+        /// <summary>録音終了時に実行する</summary>
+        public Action<string> OnRecordEnd;
+
         /// <summary>音声録音用</summary>
         AudioClip _recordClip;
 
@@ -69,7 +72,10 @@ namespace AudioRecord
                 Microphone.End(deviceName: _micName);
 
                 //Wavファイル生成
-                Wav.ExportWav(_recordClip, Application.persistentDataPath + $"/{_fileName}{_fileExtension}");
+                Wav.ExportWav(_recordClip, Application.dataPath + $"/{_fileName}{_fileExtension}");
+
+                //録音終了時のアクションを呼ぶ
+                OnRecordEnd(_fileName);
             }
         }
     }
