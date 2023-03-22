@@ -9,7 +9,7 @@ using Models.WhisperAPI;
 public class WhisperRequestCaller : MonoBehaviour
 {
     [SerializeField] SaveAPIKeyManager _saveAPIKeyManager;
-    [SerializeField] GPTCallManger _gPTCallManger;
+    //[SerializeField] GPTCallManger _gPTCallManger;
 
     private CancellationTokenSource _cts = new();
     private CancellationToken _token;

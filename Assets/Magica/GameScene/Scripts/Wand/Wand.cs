@@ -1,5 +1,6 @@
 using UnityEngine;
 using AudioRecord;
+using Cysharp.Threading.Tasks;
 
 /// <summary>
 /// 呪文を詠唱するワンドクラス
@@ -10,7 +11,7 @@ public class Wand : MonoBehaviour
     [Header("参照")]
     [SerializeField] VoiceRecorder _recordVoice;
     [SerializeField] WhisperRequestCaller _whisperRequestCaller;
-    [SerializeField] 
+    [SerializeField] MagicManager _magicManager;
 
     // Update is called once per frame
     void Update()
@@ -26,8 +27,14 @@ public class Wand : MonoBehaviour
         }
         else if(Input.GetButtonUp("CastSpell"))
         {
-            var fileName = _recordVoice.StopRecording();
-            var spell = _whisperRequestCaller.WhisperRequestCall(fileName);
+            Cast();
         }
+    }
+
+    private async void Cast()
+    {
+        var fileName = _recordVoice.StopRecording();
+        var spell = await _whisperRequestCaller.WhisperRequestCall(fileName);
+        _magicManager.SearchSpell(spell.ToString());
     }
 }

@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +12,13 @@ public class MagicManager : MonoBehaviour
     [SerializeField] List<ISpell> _spells = new();
 
     /// <summary>
-    /// 
+    /// “o˜^‚³‚ê‚Ä‚¢‚é–‚–@‚©‚ç‰¹º“ü—Í‚³‚ê‚½‚à‚Ì‚ğŒ©‚Â‚¯‚é
     /// </summary>
-    public void Search(string voiceInput)
-    { 
-        
+    public void SearchSpell(string voiceInput)
+    {
+        Debug.Log("SearchSpell");
+
+        var spell = _spells.FirstOrDefault(x => x.SpellName == voiceInput);
+        spell?.CastSpell();
     }
 }

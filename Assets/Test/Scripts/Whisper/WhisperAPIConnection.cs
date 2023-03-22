@@ -21,17 +21,18 @@ public class WhisperAPIConnection
 
     public async UniTask<WhisperAPIResponseModel> RequestAsync(CancellationToken token, string filePath)
     {
+
         var headers = new Dictionary<string, string>
         {
             { "Authorization", "Bearer " + _apiKey }
         };
 
-        byte[] fileBytes = await File.ReadAllBytesAsync(filePath, cancellationToken: token);
+        byte[] fileBytes = await File.ReadAllBytesAsync($"{Application.dataPath}/{filePath}.wav", cancellationToken: token);
 
         //â∫ÇÃÅöÇ∆Ç«ÇøÇÁÇ≈Ç‡ê≥ÇµÇ≠èàóùÇ≥ÇÍÇÈ
         WWWForm form = new();
         form.AddField("model", ModelName);
-        form.AddBinaryData("file", fileBytes, Path.GetFileName(filePath), "multipart/form-data");
+        form.AddBinaryData("file", fileBytes, Path.GetFileName($"{filePath}.wav"), "multipart/form-data");
 
         //// è„ÇÃÅöÇ∆Ç«ÇøÇÁÇ≈Ç‡ê≥ÇµÇ≠èàóùÇ≥ÇÍÇÈ
         //List<IMultipartFormSection> form = new();
