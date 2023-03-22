@@ -1,6 +1,9 @@
 # ChatGptTest  
 # 目標  
-声で操作できる戦闘補助AIを使ったゲームを作る →　呪文の生成をGPTで、詠唱をWhisperAPIでできるゲームを作る。  
+声で操作できる戦闘補助AIを使ったゲームを作る →　呪文の生成をGPTで、詠唱をWhisperAPIでできるゲームを作る。    
+
+# モデル図
+https://drive.google.com/file/d/1t-iqkGCvtIncqHAnKnReBkwUplwQFC7E/view?usp=sharing
 
 # メモ  
 - プロンプトエンジニアリングを学べばより正確な返答を求めることができるかも(http://soysoftware.sakura.ne.jp/archives/3691)
