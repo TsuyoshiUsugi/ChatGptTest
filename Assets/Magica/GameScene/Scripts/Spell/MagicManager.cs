@@ -16,8 +16,7 @@ public class MagicManager : MonoBehaviour
     /// </summary>
     public void SearchSpell(string voiceInput)
     {
-        Debug.Log("SearchSpell");
-
+        Debug.Log(voiceInput);
         var spell = _spells.FirstOrDefault(x => x.SpellName == voiceInput);
         spell?.CastSpell();
     }

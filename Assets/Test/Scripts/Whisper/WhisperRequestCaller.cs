@@ -30,6 +30,7 @@ public class WhisperRequestCaller : MonoBehaviour
 
         //録音したオーディオファイルを削除する
         System.IO.File.Delete(Application.dataPath + $"/{audioFilePath}.wav");
+        System.IO.File.Delete(Application.dataPath + $"/{audioFilePath}.wav.meta");
 
         return responseModel.text;
     }

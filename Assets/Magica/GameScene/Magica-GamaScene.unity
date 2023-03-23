@@ -12340,8 +12340,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _recordVoice: {fileID: 1347409203}
-  _whisperRequestCaller: {fileID: 0}
-  _magicManager: {fileID: 0}
+  _whisperRequestCaller: {fileID: 801249459}
+  _magicManager: {fileID: 1057645937}
 --- !u!1 &1057645936
 GameObject:
   m_ObjectHideFlags: 0

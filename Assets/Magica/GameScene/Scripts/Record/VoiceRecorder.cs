@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Linq;
 
 namespace AudioRecord
 {
@@ -45,7 +46,8 @@ namespace AudioRecord
         /// </summary>
         void SetMic()
         {
-            _micName = Microphone.devices[0];
+            _micName = Microphone.devices[4];
+            Microphone.devices.ToList().ForEach(mic => Debug.Log(mic));
         }
 
         /// <summary>
