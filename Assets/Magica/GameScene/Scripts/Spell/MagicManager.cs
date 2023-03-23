@@ -11,6 +11,13 @@ public class MagicManager : MonoBehaviour
     [Header("QÆ")]
     [SerializeField] List<ISpell> _spells = new();
 
+    public void Start()
+    {
+        GetComponents<ISpell>().ToList().ForEach(spell => _spells.Add(spell)) ;
+
+        _spells.ForEach(spell => Debug.Log(spell));
+    }
+
     /// <summary>
     /// “o˜^‚³‚ê‚Ä‚¢‚é–‚–@‚©‚ç‰¹º“ü—Í‚³‚ê‚½‚à‚Ì‚ğŒ©‚Â‚¯‚é
     /// </summary>
