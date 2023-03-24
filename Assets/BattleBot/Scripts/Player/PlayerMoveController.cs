@@ -22,14 +22,17 @@ public class PlayerMoveController : MonoBehaviour
     void Update()
     {
         ReadKey();
+    }
 
+    private void FixedUpdate()
+    {
         MovePlayer();
     }
 
     void ReadKey()
     {
-        _h = Input.GetAxisRaw("Horizontal");
-        _v = Input.GetAxisRaw("Vertical");
+        _h = Input.GetAxis("Horizontal");
+        _v = Input.GetAxis("Vertical");
     }
 
     void MovePlayer()

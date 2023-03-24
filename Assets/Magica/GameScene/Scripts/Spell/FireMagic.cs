@@ -18,12 +18,6 @@ public class FireMagic : MonoBehaviour, ISpell
     public void CastSpell()
     {
         StartCoroutine(nameof(GenerateSpellCircle));
-
-        GameObject fire = Instantiate(_fire);
-        fire.transform.position = _magicCircle.transform.position;
-
-        Vector3 dir = _magicCircle.transform.forward;
-        fire.GetComponent<Rigidbody>().velocity = dir * 10;
     }
 
     IEnumerator GenerateSpellCircle()
@@ -31,8 +25,19 @@ public class FireMagic : MonoBehaviour, ISpell
         GameObject magicCircle = Instantiate(_magicCircle);
         magicCircle.transform.position = _magicGeneratePoint.transform.position;
 
+        FireBolt(magicCircle);
+
         yield return new WaitForSeconds(_magicCircleTime);
 
         Destroy(magicCircle);
+    }
+
+    private void FireBolt(GameObject magicCircle)
+    {
+        GameObject fire = Instantiate(_fire);
+        fire.transform.position = magicCircle.transform.position;
+
+        Vector3 dir = _magicCircle.transform.forward;
+        fire.GetComponent<Rigidbody>().velocity = dir * 10;
     }
 }

@@ -8,14 +8,12 @@ using UnityEngine;
 public class FPSPlayerCamController : MonoBehaviour
 {
     Camera _cam;
-    Rigidbody _rb;
     float _h;
     float _v;
 
     // Start is called before the first frame update
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
         _cam = GetComponentInChildren<Camera>();
     }
 
@@ -23,20 +21,22 @@ public class FPSPlayerCamController : MonoBehaviour
     void Update()
     {
         ReadKey();
-
+        
         RotateCam();
     }
 
     void ReadKey()
     {
-        _h = Input.GetAxisRaw("Mouse X");
-        _v = Input.GetAxisRaw("Mouse Y");
+        _h = Input.GetAxis("Mouse X");
+        _v = -1 * Input.GetAxis("Mouse Y");
     }
 
     void RotateCam()
     {
         var hInputAngle = Quaternion.AngleAxis(_h, Vector3.up);
+        var vInputAngle = Quaternion.AngleAxis(_v, Vector3.right);
 
-        _rb.rotation *= hInputAngle;
+        this.transform.rotation *= hInputAngle;
+        _cam.transform.rotation *= vInputAngle;
     }
 }

@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Magica/Title/Magica-Titlle.unity
+    guid: 59bfe85a74a97e34c82d43c529a7c8fe
+  - enabled: 1
+    path: Assets/Magica/GameScene/Magica_GamaScene_1.unity
+    guid: 39feae5ee02d4ea47ba68dd3e1500fb9
   m_configObjects: {}
