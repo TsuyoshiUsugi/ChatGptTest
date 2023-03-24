@@ -13,21 +13,22 @@ public class TalkWindowManager : MonoBehaviour
 
     private void Start()
     {
+        //Às‡‚ğ‚©‚ñ‚ª‚¦‚éB
         //_talkWindowPanel.SetActive(false);
     }
 
-    public void DoTalkWindowTask(List<string> sentences)
+    public void DoTalkWindowTask(List<string[]> sentences)
     {
         DoTask(sentences);
     }
 
-    async void DoTask(List<string> sentence)
+    async void DoTask(List<string[]> sentence)
     {
         _talkWindowPanel.SetActive(true);
 
         for (int i = 0; i < sentence.Count; i++)
         {
-            _talkText.text = sentence[i];
+            _talkText.text = sentence[i][1];
             await UniTask.Delay(System.TimeSpan.FromSeconds(_showTextSec));
         }
 
