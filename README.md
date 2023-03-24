@@ -6,6 +6,7 @@
 https://drive.google.com/file/d/1t-iqkGCvtIncqHAnKnReBkwUplwQFC7E/view?usp=sharing
 
 # メモ  
+- 音声認識だけならUnityEngine.Windows.Speechのほうがよさそう
 - プロンプトエンジニアリングを学べばより正確な返答を求めることができるかも(http://soysoftware.sakura.ne.jp/archives/3691)
 - Too Many Requestsエラーがそこそこでてくる(もちろんUpdateで回していたりはしない)。またレスポンスもそこまで早くない。実際のゲームでつかうなら返答スピードがそこまで必要でないものの方がいいかも。
 - WhisperAPIはかなり返答がはやい。なんでもChatGPTに送るよりかは決められた単語をWhisperAPIで読み取って実行の方がいいかもしれない。 ChatGPTのローカル版のAlpacaが存在するくらいなのだからWhisperAPIもローカル版がでたらより使いやすいかも
