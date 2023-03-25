@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,21 @@ using UnityEngine;
 public class Target : MonoBehaviour, IHit
 {
     [SerializeField] GameObject _fireEffect;
+    [SerializeField] GameObject _mark;
+
+    public event Action OnTargetDestroy;
 
     void Start()
     {
         _fireEffect.SetActive(false);
+        _mark.SetActive(true);
     }
 
     public void Hit()
     {
         _fireEffect.SetActive(true);
+        _mark.SetActive(false);
+
+        OnTargetDestroy();
     }
 }

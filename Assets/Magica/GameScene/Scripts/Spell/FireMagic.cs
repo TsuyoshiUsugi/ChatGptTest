@@ -24,6 +24,7 @@ public class FireMagic : MonoBehaviour, ISpell
     {
         GameObject magicCircle = Instantiate(_magicCircle);
         magicCircle.transform.position = _magicGeneratePoint.transform.position;
+        magicCircle.transform.rotation = _magicGeneratePoint.transform.rotation;
 
         FireBolt(magicCircle);
 
@@ -37,7 +38,7 @@ public class FireMagic : MonoBehaviour, ISpell
         GameObject fire = Instantiate(_fire);
         fire.transform.position = magicCircle.transform.position;
 
-        Vector3 dir = _magicCircle.transform.forward;
+        Vector3 dir = _magicCircle.transform.right;
         fire.GetComponent<Rigidbody>().velocity = dir * 10;
     }
 }
