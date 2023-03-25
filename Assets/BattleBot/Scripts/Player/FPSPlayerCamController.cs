@@ -1,20 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 /// <summary>
 /// マウスの動きでカメラを動かす
 /// </summary>
 public class FPSPlayerCamController : MonoBehaviour
 {
-    Camera _cam;
+    CinemachineVirtualCamera _cam;
     float _h;
     float _v;
 
     // Start is called before the first frame update
     void Start()
     {
-        _cam = GetComponentInChildren<Camera>();
+        _cam = GetComponentInChildren<CinemachineVirtualCamera>();
     }
 
     // Update is called once per frame
