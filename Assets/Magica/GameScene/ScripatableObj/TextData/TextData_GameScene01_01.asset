@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a96bb6ad209d6c4ba1ba85caf3765a3, type: 3}
+  m_Name: TextData_GameScene01_01
+  m_EditorClassIdentifier: 
+  Text:
+  - "\u3053\u3093\u306B\u3061\u306F\uFF01"
+  - "\u3042\u306A\u305F\u3082\u3042\u306E\u5854\u3092\u76EE\u6307\u3057\u3066\u3044\u308B\u3093\u3067\u3059\u304B\uFF1F"
+  - "\u898B\u305F\u3068\u3053\u308D\u3001\u3042\u306A\u305F\u3082\u79C1\u3068\u540C\u3058\u9B54\u6CD5\u4F7F\u3044\u306E\u3088\u3046\u3067\u3059\u306D"
+  - "\u79C1\u304C\u9B54\u6CD5\u306E\u4F7F\u3044\u65B9\u3092\u6559\u3048\u307E\u3057\u3087\u3046"

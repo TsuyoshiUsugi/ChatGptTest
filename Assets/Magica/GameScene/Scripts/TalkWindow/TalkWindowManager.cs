@@ -17,18 +17,18 @@ public class TalkWindowManager : MonoBehaviour
         //_talkWindowPanel.SetActive(false);
     }
 
-    public void DoTalkWindowTask(List<string[]> sentences)
+    public void DoTalkWindowTask(List<string> sentences)
     {
         DoTask(sentences);
     }
 
-    async void DoTask(List<string[]> sentence)
+    async void DoTask(List<string> sentence)
     {
         _talkWindowPanel.SetActive(true);
 
         for (int i = 0; i < sentence.Count; i++)
         {
-            _talkText.text = sentence[i][1];
+            _talkText.text = sentence[i];
             await UniTask.Delay(System.TimeSpan.FromSeconds(_showTextSec));
         }
 

@@ -6,14 +6,14 @@ using UnityEngine;
 public class MagicaCSVLoader : MonoBehaviour
 {
     [SerializeField] TalkWindowManager _talkWindowManager;
-    TextAsset _csvFile;
+    UnityEngine.TextAsset _csvFile;
     List<string[]> _csvData = new ();
     string _fileName = "Magica_Text_Utf8";
 
     // Start is called before the first frame update
     void Start()
     {
-        _csvFile = Resources.Load(_fileName) as TextAsset;
+        _csvFile = Resources.Load(_fileName) as UnityEngine.TextAsset;
         StringReader reader = new StringReader(_csvFile.text);
 
         while (reader.Peek() != -1)
@@ -22,6 +22,6 @@ public class MagicaCSVLoader : MonoBehaviour
             _csvData.Add(line);
         }
 
-        _talkWindowManager.DoTalkWindowTask(_csvData);
+        //_talkWindowManager.DoTalkWindowTask(_csvData);
     }
 }
