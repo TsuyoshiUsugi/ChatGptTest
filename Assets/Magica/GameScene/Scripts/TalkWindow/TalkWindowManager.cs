@@ -32,6 +32,11 @@ public class TalkWindowManager : MonoBehaviour
             await UniTask.Delay(System.TimeSpan.FromSeconds(_showTextSec));
         }
 
+        
+    }
+
+    public void CloseUI()
+    {
         _talkWindowPanel.SetActive(false);
     }
 }

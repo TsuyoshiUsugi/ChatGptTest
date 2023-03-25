@@ -18,4 +18,9 @@ public class Fade : MonoBehaviour
     {
         _fadePanel.DOFade(0f, _fadeTime).SetEase(ease);
     }
+
+    public void DoFadeOut()
+    {
+        _fadePanel.DOFade(1f, _fadeTime).SetEase(ease);
+    }
 }
