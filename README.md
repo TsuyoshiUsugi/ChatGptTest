@@ -1,5 +1,8 @@
 # ChatGptTest  
 # 目標  
+- 学習目標  
+ChatGPTとWhiperAPIで何ができるか調べる。
+- 制作目標  
 声で操作できる戦闘補助AIを使ったゲームを作る →　呪文の生成をGPTで、詠唱をWhisperAPIでできるゲームを作る。  
 
 # 結果　
