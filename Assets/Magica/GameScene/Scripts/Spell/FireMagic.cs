@@ -10,7 +10,7 @@ public class FireMagic : MonoBehaviour, ISpell
     [SerializeField] GameObject _fire;
     [SerializeField] GameObject _magicCircle;
     [SerializeField] GameObject _magicGeneratePoint;
-    float _speed = 10;
+    float _speed = 1;
     float _magicCircleTime = 2;
 
     public string SpellName => "ファイアボルト";
@@ -38,7 +38,7 @@ public class FireMagic : MonoBehaviour, ISpell
         GameObject fire = Instantiate(_fire);
         fire.transform.position = magicCircle.transform.position;
 
-        Vector3 dir = _magicCircle.transform.right;
-        fire.GetComponent<Rigidbody>().velocity = dir * 10;
+        var dir = Camera.main.transform.forward;
+        fire.GetComponent<Rigidbody>().velocity = dir.normalized * _speed;
     }
 }

@@ -16,5 +16,8 @@ public class PlayerView : MonoBehaviour
     {
         _playerManager.ObserveEveryValueChanged(hp => _playerManager.HP)
             .Subscribe(hp => _hpText.text = hp.ToString());
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }
