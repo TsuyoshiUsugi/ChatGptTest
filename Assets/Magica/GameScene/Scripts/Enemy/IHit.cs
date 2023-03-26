@@ -3,6 +3,6 @@
 /// </summary>
 public interface IHit
 {
-    void Hit();
+    void Hit(int damage);
 
 }

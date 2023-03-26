@@ -19,7 +19,7 @@ public class Target : MonoBehaviour, IHit
         _mark.SetActive(true);
     }
 
-    public void Hit()
+    public void Hit(int damage)
     {
         _fireEffect.SetActive(true);
         _mark.SetActive(false);

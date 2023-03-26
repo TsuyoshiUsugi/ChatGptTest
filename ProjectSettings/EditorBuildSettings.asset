@@ -11,4 +11,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Magica/GameScene/Magica_GamaScene_1.unity
     guid: 39feae5ee02d4ea47ba68dd3e1500fb9
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Magica/GameScene/Magica_GameScene_02.unity
+    guid: e79f8790377485848b16e9c6febe40e7
+  - enabled: 1
+    path: Assets/Magica/GameScene/Magica_GameScene_03.unity
+    guid: 979afe1d60d4c234ba2a9f2e163b0ef3
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 9e7be553448fa2546aea5752021cbcf7, type: 2}
