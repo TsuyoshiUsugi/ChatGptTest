@@ -8,7 +8,14 @@ ChatGPTとWhiperAPIで何ができるか調べる。
 # 結果　
 ChatGPTもWhiperAPIもリクエストが必要な以上スピードが求められるゲームには向かなそうなことが分かった。    
 今後利用する際はそれらを意識したうえでゲームデザインをするべきだとわかった。またWhisperAPIに関しては精度がそこまでよくはないので現状はWindows.Speechの方がよさそう。  
-0.02ドルとはいえもったいない。
+0.02ドルとはいえもったいない。  
+とはいえ、音声認識をゲームに使う方法とそれがどのようなものか知れたのはよかった。
+
+
+
+https://user-images.githubusercontent.com/104509665/227771788-6515adbd-4f54-4971-977b-897d998645f6.mp4
+
+
 
 # モデル図
 https://drive.google.com/file/d/1t-iqkGCvtIncqHAnKnReBkwUplwQFC7E/view?usp=sharing
